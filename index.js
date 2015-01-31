@@ -17,7 +17,9 @@ var compile = function compile(template, compileOpts) {
     compileOpts = Hoek.applyToDefaults(DEFAULTS, compileOpts);
     var filepath = Path.join(process.cwd(), compileOpts.filename);
     var Component, Element;
-    require('node-jsx').install(compileOpts['node-jsx']);
+    if (compileOpts['skip-node-jsx'] !== true) {
+      require('node-jsx').install(compileOpts['node-jsx']);
+    }
 
     return function runtime(context, renderOpts) {
 
